@@ -1,4 +1,6 @@
 (function(){
+    var eventCallIdCounter = 0;
+
     // Global interface of callbacks for Stile to call.
     window.stileInterface = window.stileInterface || {
         getWindowHeight: function(callback){
@@ -62,6 +64,16 @@
         } else {
             methodCallback.apply(null, [callback].concat(arguments));
         }
+    }
+
+    window.sendStileEventCall = function sendEventCall(eventName, eventArguments){
+        var callId = "event" + (eventCallIdCounter++);
+
+        postJSONData({
+            eventCallId: callId,
+            event: eventName,
+            eventArguments: eventArguments
+        });
     }
 
 
