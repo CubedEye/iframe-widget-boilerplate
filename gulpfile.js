@@ -16,7 +16,7 @@ gulp.task('watch', ['build'], function () {
 });
 
 gulp.task('build', ['sass', 'scripts', 'html'], function() {
-    return gulp.src('./build/**.*')
+    return gulp.src('./build/**')
         .pipe(gulp.dest('./dist'));
 });
 
@@ -50,9 +50,11 @@ gulp.task('sass', function () {
 
 
 gulp.task('scripts', function() {
-  return gulp.src('src/javascript/**/*.js', {base: '.'})
+  return gulp.src(['src/javascript/**/*.js', 'stile/stileInterface.js'], {base: '.'})
     .pipe(order([
-        'src/javascript/stileInterface.js',
+        'stile/stileInterface.js',
+        '!src/javascript/main.js',
+        'src/javascript/main.js',
     ]))
     .pipe(eslint({
         'extends':'eslint:recommended',
