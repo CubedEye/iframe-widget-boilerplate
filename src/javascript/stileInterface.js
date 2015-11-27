@@ -53,7 +53,7 @@
         };
     }
 
-    function handleRPCCall(method, arguments, callId){
+    function handleRPCCall(method, methodArguments, callId){
         var methodCallback = window.stileInterface[method];
         function callback(err, response){
             if(err) {
@@ -78,7 +78,7 @@
                 method + " has not been implemented"
             ));
         } else {
-            methodCallback.apply(null, [callback].concat(arguments));
+            methodCallback.apply(null, [callback].concat(methodArguments));
         }
     }
 
@@ -90,7 +90,7 @@
             event: eventName,
             eventArguments: eventArguments
         });
-    }
+    };
 
 
     window.addEventListener("message", function (event){
@@ -99,8 +99,9 @@
         if(event.origin !== sourceOrigin) return;
 
         // Parse the message data, if it isn't JSON return an error mesage
+        var eventData;
         try {
-            var eventData = JSON.parse(event.data);
+            eventData = JSON.parse(event.data);
         } catch(e) {
             postJSONData({
                 reponse: generateErrorResponse(
@@ -108,6 +109,7 @@
                     "Malformed message data: " + event.data
                 )
             });
+            return;
         }
 
         handleRPCCall(eventData.method, eventData.rpcArguments, eventData.rpcCallId);
