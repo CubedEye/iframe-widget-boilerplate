@@ -9,7 +9,6 @@ var eslint = require('gulp-eslint');
 var removeUseStrict = require("gulp-remove-use-strict");
 var watch = require('gulp-watch');
 var stripBom = require('gulp-stripbom');
-var debug = require('gulp-debug');
 
 gulp.task('default', ['build']);
 gulp.task('watch', ['build'], function () {
