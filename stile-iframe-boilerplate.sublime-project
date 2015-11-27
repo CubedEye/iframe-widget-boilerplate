@@ -1,0 +1,38 @@
+{
+	"folders":
+	[
+		{
+			"file_exclude_patterns":
+			[
+				"*.sublime-workspace",
+				"*.DS_Store",
+				".apdisk",
+				"*.pid",
+				".rbenvrc",
+				".profile",
+				"._*",
+				"*.output",
+				"*.log",
+				"documentation/*.html",
+				"documentation/*.pdf"
+			],
+			"folder_exclude_patterns":
+			[
+				".vagrant",
+				".sass-cache",
+				"dist",
+				"build",
+				".rbenv",
+				".bundle",
+				"web-client/dist",
+				"web-client/doc",
+				"node_modules",
+				"thin",
+				"coverage",
+				"mobile-client/www",
+				"mobile-client/platform"
+			],
+			"path": "/Users/stevenrobinson/stile/dev-environment"
+		}
+	]
+}
