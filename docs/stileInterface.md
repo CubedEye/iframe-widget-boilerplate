@@ -61,7 +61,7 @@ Parameter   | Type                      | Description                           
             width: 1000,
             height: 400
         });
-    }
+    },
 ```
 
 ## Sending events to Stile
@@ -86,5 +86,7 @@ Trigger this event if your window resizes, this will let Stile know that your iF
 
 #### Example
 ```javascript
+window.addEventListener('resize' function(){
     window.sendStileEventCall('changeWindowDimensions');
+}, false);
 ```
