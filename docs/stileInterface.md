@@ -48,7 +48,7 @@ Parameter   | Type                      | Description                           
 
 Is called when Stile needs the size of your of you iframe. It should return the dimensions of your iframe in an object with the keys `width` and `height`.
 
-*NOTE - Stile will not allow you to exceed 675px tall, if you return a height taller than that, your iframe will have a scrollbar.
+**NOTE - Stile will not allow you to exceed 675px tall, if you return a height taller than that, your iframe will have a scrollbar.**
 
 Parameter   | Type                      | Description                                  |
 ------------| --------------------------|----------------------------------------------|
