@@ -9,21 +9,26 @@ var eslint = require('gulp-eslint');
 var removeUseStrict = require("gulp-remove-use-strict");
 var watch = require('gulp-watch');
 var stripBom = require('gulp-stripbom');
+var copy = require('gulp-copy');
+var inline_base64 = require('gulp-inline-base64');
+var argv = require('yargs').argv;
+var gulpif = require('gulp-if');
 
 gulp.task('default', ['build']);
 gulp.task('watch', ['build'], function () {
    gulp.watch('./src/**', ['build']);
 });
 
-gulp.task('build', ['sass', 'scripts', 'html'], function() {
-    return gulp.src('./build/**')
-        .pipe(gulp.dest('./dist'));
+gulp.task('build', ['sass', 'scripts', 'html', 'assets'], function() {
+    return gulp.src(argv.publish ? './build/index.html' : './build/**')
+        .pipe(gulpif(argv.publish, inlinesource({
+            attribute: ""
+        })))
+        .pipe(argv.publish ? gulp.dest('./output') : gulp.dest('./dist'));
 });
 
-gulp.task('production', ['sass', 'scripts', 'html'], function() {
-    return gulp.src('./build/index.html')
-        .pipe(inlinesource())
-        .pipe(gulp.dest('./output'));
+gulp.task('production', ['sass', 'scripts', 'html', 'assets'], function() {
+
 });
 
 gulp.task('html', function () {
@@ -56,6 +61,11 @@ gulp.task('sass', function () {
         ],
         cascade: false
     }))
+    .pipe(gulpif(argv.publish, inline_base64({
+        baseDir: "src",
+        maxSize: 1024 * 1024, // 1MB
+        debug: true
+    })))
     .pipe(concat('style.css'))
     .pipe(gulp.dest('./build/'));
 });
@@ -85,3 +95,8 @@ gulp.task('scripts', function() {
     .pipe(concat('app.js'))
     .pipe(gulp.dest('./build/'));
 });
+
+gulp.task('assets', function(){
+    return gulp.src("src/assets/**", {base: '.'})
+        .pipe(copy('./build/', {prefix: 1}));
+})
