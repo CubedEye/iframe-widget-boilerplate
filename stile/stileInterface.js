@@ -1,17 +1,16 @@
+/**
+ *  Stile iFrame communication interface
+ *
+ *  No need to touch anything in here, all your scripts should be added to main.js instead.
+ *
+ *  Read docs/stileInterface.md for information on how to interact with Stile from your
+ *  widget using this interface.
+**/
 (function(){
     var eventCallIdCounter = 0;
 
     // Global interface of callbacks for Stile to call.
     window.stileInterface = window.stileInterface || {
-        getWindowHeight: function(callback){
-            var body = document.body;
-            var html = document.documentElement;
-
-            var height = Math.max( body.scrollHeight, body.offsetHeight,
-                                   html.clientHeight, html.scrollHeight, html.offsetHeight );
-
-            callback(null, height);
-        },
         getWindowDimensions: function(callback){
             var body = document.body;
             var html = document.documentElement;
