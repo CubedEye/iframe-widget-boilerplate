@@ -221,15 +221,6 @@ option {
     display: block;
 }
 
-ul, ol {
-    list-style: none;
-    padding: 0;
-}
-ul.reset, ol.reset {
-    list-style: outside;
-    padding-left: 40px;
-}
-
 h1, h2, h3, h4, h5, h6 {
     // Remove the default bold font weight, instead just inherit from the
     // parent.
