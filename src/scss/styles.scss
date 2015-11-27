@@ -16,7 +16,9 @@ body {
 
     h1 {
         text-align: center;
-        margin-bottom: 20px
+        margin-bottom: 20px;
+        clear: both;
+        margin-top: 40px;
     }
     p {
         margin-bottom: 10px;
@@ -25,5 +27,8 @@ body {
         background: #ccc;
         display: inline;
         padding: 5px;
+    }
+    img {
+        float: right;
     }
 }
