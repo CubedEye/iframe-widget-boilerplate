@@ -41,7 +41,19 @@ gulp.task('sass', function () {
         showLog: false,
     }))
     .pipe(autoprefixer({
-        browsers: ['last 2 versions'],
+        browsers: [
+            // Desktop browsers
+            'Explorer >= 10', // IE
+            'Safari >= 6',
+            'Chrome >= 40',
+            'Firefox >= 35',
+            'Opera >= 27',
+
+            // Mobile browsers
+            'iOS >= 8',
+            'ChromeAndroid >= 40',
+            'last 2 Android versions', // Android webView
+        ],
         cascade: false
     }))
     .pipe(concat('style.css'))
