@@ -24,11 +24,11 @@ Scaffolding for creating iFrame embedded widgets in Stile.
 
 ## Development Environment
 
-1. Run the dev-server
+1. Start the dev-server (leave it running)
 
     `npm run-script dev`
 
-2. Run gulp watch
+2. Start gulp watch (leave it running)
 
     `npm run-script gulp`
 
@@ -37,28 +37,29 @@ Scaffolding for creating iFrame embedded widgets in Stile.
 
 ## Developing (where to put things)
 
-All you work should existing the `/src` directory:
+All your work should exist in the `/src` directory:
 
 ### `src/html/`:
 
-Should contain only the `index.html` file containing minimal boilerplate to get you started.
+In template contains only the `index.html` file with minimal boilerplate to get you started.
 
-This file should contain all the projects HTML, all script and style files will be compiled in to it.
+Put your project's HTML in this. The build process will compile all script and style files into `style.css` and `app.js` files, as referred to in `index.html`.
 
 ### `src/javascript`:
 
-Should contain any `.js` files, they will be compiled into `app.js` along with the stileInterface.js.
+Put your `.js` files in here. Your code and the provided `stileInterface.js` will all be compiled together as the single output JavaScript file `app.js`.
 
-`main.js` will be added at the end of `app.js`. So extra libraries can be added as separate files and
-used in `main.js`.
+`main.js` will be added at the end of `app.js` such that its contents will run as soon as `app.js` loads in `index.html`. So you can add extra libraries as separate files and refer to them in `main.js`.
 
 **Babeljs has been included in the pipeline, so new ES2015 features can be used.**
 
-*NOTE: Your iFrame will be sandboxed and won't be able to reach any external resources, 3rd party libraries will need to be included in the project. All other communication will need to happen through the Stile iFrame communication interface, documentation is located in the doc/stileInterface.md file.*
+*NOTE: Your iFrame will be sandboxed and won't be able to reach any external resources; you will need to include copies of any third-party libraries you want to use inside your project.
+
+All other communication will need to happen through the Stile iFrame communication interface. Documentation for this is located in the doc/stileInterface.md file.*
 
 ### `src/scss`:
 
-Should contain any `.scss` files, they will be compiled into `style.css` along with `reset.scss`.
+Put your `.scss` files here. Your styles and the provided `reset.scss` will all be compiled together as the single output CSS file `style.css`.
 
 `reset.scss` will be included first so other CSS files will be included after it.
 
@@ -67,7 +68,7 @@ Should contain any `.scss` files, they will be compiled into `style.css` along w
 
 ### `src/assets`:
 
-Should contain any other files (images, fonts, etc.). These will be copied and base64 encoded in to the final output. You can reach them in your code at the path `/assets/your-asset-name.ext`.
+Put your other files (images, fonts, etc.) here. These will be copied and Base64-encoded into the final output. You can reach them in your code at the path `/assets/your-asset-name.ext`.
 
 
 ## Publishing
